@@ -12,7 +12,7 @@ const perguntas = [
         "Chihauhua",
         "Dachshund"
     ],
-    correta: 0 // A primeira alternativa é a correta
+    correta: 1 // A primeira alternativa é a correta
     },
     {
     enunciado: "Qual a raça de cachorro que é de porte pequeno e são conhecidos por sua agrecividade?",
@@ -20,7 +20,7 @@ const perguntas = [
         "Pinscher",
         "Pug"
     ],
-    correta: 1 // A primeira alternativa é a correta
+    correta: 0 // A primeira alternativa é a correta
     },
     {
     enunciado: "Qual a raça de cachorro que possui uma certa dificuldade em sua respiração, devido seu focinho achatado?",
@@ -28,7 +28,7 @@ const perguntas = [
         "Pug",
         "Shih-tzu"
     ],
-    correta: 1 // A primeira alternativa é a correta
+    correta: 0 // A primeira alternativa é a correta
     },
     {
     enunciado: "Qual a raça de cachorro que são guias de pessoas com deficiencia visual?",
@@ -36,7 +36,7 @@ const perguntas = [
         "Rottwelier",
         "Golden"
     ],
-    correta: 0 // A primeira alternativa é a correta
+    correta: 1 // A primeira alternativa é a correta
     },
     {
     enunciado: "Qual a raça de cachorro que são considerados pelos antepassados ótimos caçadores?",
@@ -44,7 +44,7 @@ const perguntas = [
         "Perdigueiro Português",
         "Terrier Brasileiro"
     ],
-    correta: 1 // A primeira alternativa é a correta
+    correta: 0 // A primeira alternativa é a correta
     },
 ];
 
@@ -52,6 +52,9 @@ let atual = 0;
 let perguntaAtual;
 let pontuacao = 0; // Inicie a pontuação em 0
 
-function montraPergunta() 
+function montraPergunta() {
+    perguntaAtual = perguntas[atual];
+    caixaPerguntas.textoContent
+}
 
 
