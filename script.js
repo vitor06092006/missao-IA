@@ -52,9 +52,54 @@ let atual = 0;
 let perguntaAtual;
 let pontuacao = 0; // Inicie a pontuação em 0
 
-function montraPergunta() {
+function mostraPergunta() {
     perguntaAtual = perguntas[atual];
-    caixaPerguntas.textoContent
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.innerHTML = ''; // Limpa as alternativas anteriores
+
+    // Cria botões para as alternativas
+    perguntaAtual.alternativas.forEach((alternativa, index) => {
+        const botao = document.createElement('button');
+        botao.textContent = alternativa;
+        botao.addEventListener('click', () => verificaResposta(index));
+        caixaAlternativas.appendChild(botao);
+    });
 }
+
+function verificaResposta(selecionada) {
+    if (selecionada === perguntaAtual.correta) {
+        pontuacao++;
+    }
+    atual++;
+    if (atual < perguntas.length) {
+        mostraPergunta();
+    } else {
+        mostraResultado();
+    }
+}
+
+function mostraResultado() {
+    caixaPrincipal.style.display = 'none'; // Esconde a caixa de perguntas
+    caixaResultado.style.display = 'block'; // Mostra a caixa de resultado
+    setTimeout(() => caixaResultado.classList.add('mostrar'), 10); // Adiciona classe para animação
+    textoResultado.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas!`;
+
+    const botaoReiniciar = document.createElement('button');
+    botaoReiniciar.textContent = 'Reiniciar';
+    botaoReiniciar.addEventListener('click', () => {
+        atual = 0;
+        pontuacao = 0;
+        caixaResultado.classList.remove('mostrar');
+        caixaResultado.style.display = 'none';
+        caixaPrincipal.style.display = 'block';
+        mostraPergunta();
+    });
+    caixaResultado.innerHTML = ''; // Limpa conteúdo anterior
+    caixaResultado.appendChild(textoResultado);
+    caixaResultado.appendChild(botaoReiniciar);
+}
+
+// Inicializa a primeira pergunta
+mostraPergunta();
 
 
