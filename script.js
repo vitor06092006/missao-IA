@@ -52,7 +52,7 @@ let atual = 0;
 let perguntaAtual;
 let pontuacao = 0; // Inicie a pontuação em 0
 
-function mostraPergunta() {
+function mostrarPergunta() {
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
     caixaAlternativas.innerHTML = ''; // Limpa as alternativas anteriores
@@ -72,13 +72,13 @@ function verificaResposta(selecionada) {
     }
     atual++;
     if (atual < perguntas.length) {
-        mostraPergunta();
+        mostrarPergunta();
     } else {
-        mostraResultado();
+        mostrarResultado();
     }
 }
 
-function mostraResultado() {
+function mostrarResultado() {
     caixaPrincipal.style.display = 'none'; // Esconde a caixa de perguntas
     caixaResultado.style.display = 'block'; // Mostra a caixa de resultado
     setTimeout(() => caixaResultado.classList.add('mostrar'), 10); // Adiciona classe para animação
@@ -92,7 +92,7 @@ function mostraResultado() {
         caixaResultado.classList.remove('mostrar');
         caixaResultado.style.display = 'none';
         caixaPrincipal.style.display = 'block';
-        mostraPergunta();
+        mostrarPergunta();
     });
     caixaResultado.innerHTML = ''; // Limpa conteúdo anterior
     caixaResultado.appendChild(textoResultado);
@@ -100,6 +100,6 @@ function mostraResultado() {
 }
 
 // Inicializa a primeira pergunta
-mostraPergunta();
+mostrarPergunta();
 
 
