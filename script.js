@@ -66,7 +66,7 @@ function mostrarPergunta() {
     });
 }
 
-function verificaResposta(selecionada) {
+function verificarResposta(selecionada) {
     if (selecionada === perguntaAtual.correta) {
         pontuacao++;
     }
