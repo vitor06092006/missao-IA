@@ -83,7 +83,8 @@ function mostrarResultado() {
     caixaResultado.style.display = 'block'; // Mostra a caixa de resultado
     setTimeout(() => caixaResultado.classList.add('mostrar'), 10); // Adiciona classe para animação
     textoResultado.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas!`;
-
+    
+    //criar botao de reiniciar
     const botaoReiniciar = document.createElement('button');
     botaoReiniciar.textContent = 'Reiniciar';
     botaoReiniciar.addEventListener('click', () => {
