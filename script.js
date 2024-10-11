@@ -1,5 +1,6 @@
+// Seleciona os elementos HTML que serão manipulados
 const caixaPrincipal = document.querySelector(".caixa-principal");
-const caixaPerguntas = document.querySelector(".caixa-pergunta");
+const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
@@ -8,52 +9,56 @@ const textoResultado = document.querySelector(".texto-resultado");
 const perguntas = [
     {
         enunciado: "Qual a raça de cachorro que possui orelhas longas e corpo comprido?",
-        alternativas: ["Chihauhua", "Dachshund"],
+        alternativas: ["Chihuahua", "Dachshund"],
         correta: 1,
     },
     {
-        enunciado: "Qual a raça de cachorro que é de porte pequeno e são conhecidos por sua agressividade?",
+        enunciado: "Qual a raça de cachorro de porte pequeno e conhecida por sua agressividade?",
         alternativas: ["Pinscher", "Pug"],
         correta: 0,
     },
     {
-        enunciado: "Qual a raça de cachorro que possui uma certa dificuldade em sua respiração, devido seu focinho achatado?",
+        enunciado: "Qual a raça de cachorro que tem dificuldade de respiração devido ao focinho achatado?",
         alternativas: ["Pug", "Shih-tzu"],
         correta: 0,
     },
     {
-        enunciado: "Qual a raça de cachorro que são guias de pessoas com deficiência visual?",
-        alternativas: ["Rottweiller", "Golden"],
+        enunciado: "Qual a raça de cachorro que é guia para pessoas com deficiência visual?",
+        alternativas: ["Rottweiler", "Golden"],
         correta: 1,
     },
     {
-        enunciado: "Qual a raça de cachorro que são considerados pelos antepassados ótimos caçadores?",
+        enunciado: "Qual a raça de cachorro considerada um ótimo caçador pelos antepassados?",
         alternativas: ["Perdigueiro Português", "Terrier Brasileiro"],
         correta: 0,
     },
 ];
 
 let atual = 0;
+let perguntaAtual;
 let pontuacao = 0;
 
+// FUNÇÃO MOSTRAR PERGUNTAS
 function mostrarPergunta() {
-    const perguntaAtual = perguntas[atual];
+    perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
-    caixaAlternativas.innerHTML = ''; // Limpa as alternativas anteriores
+    caixaAlternativas.innerHTML = "";
 
     perguntaAtual.alternativas.forEach((alternativa, index) => {
-        const botao = document.createElement('button');
-        botao.textContent = alternativa;
-        botao.addEventListener('click', () => verificarResposta(index));
+        const botao = document.createElement("button");
+        botao.textContent = alternativa; // Define o texto do botão como a alternativa
+        botao.addEventListener("click", () => verificaResposta(index));
         caixaAlternativas.appendChild(botao);
     });
 }
 
-function verificarResposta(selecionada) {
-    if (selecionada === perguntas[atual].correta) {
+// FUNÇÃO VERIFICAR RESPOSTA
+function verificaResposta(selecionada) {
+    if (selecionada === perguntaAtual.correta) {
         pontuacao++;
     }
     atual++;
+
     if (atual < perguntas.length) {
         mostrarPergunta();
     } else {
@@ -62,28 +67,32 @@ function verificarResposta(selecionada) {
 }
 
 function mostrarResultado() {
-    caixaPrincipal.style.display = 'none'; // Esconde a caixa de perguntas
-    caixaResultado.style.display = 'block'; // Mostra a caixa de resultado
-    setTimeout(() => caixaResultado.classList.add('mostrar'), 10); // Animação
+    // Esconde a caixa de perguntas
+    caixaPrincipal.style.display = "none";
+    // Mostra a caixa de resultado
+    caixaResultado.style.display = "block";
+
+    setTimeout(() => caixaResultado.classList.add("mostrar"), 10);
     textoResultado.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas!`;
-    
-    const botaoReiniciar = document.createElement('button');
-    botaoReiniciar.textContent = 'Reiniciar';
-    botaoReiniciar.addEventListener('click', () => {
+
+    // Criar botão de reiniciar
+    const botaoReiniciar = document.createElement("button");
+    botaoReiniciar.textContent = "Reiniciar";
+
+    // Adiciona um evento de click ao botão de reiniciar
+    botaoReiniciar.addEventListener("click", () => {
         atual = 0;
         pontuacao = 0;
-        caixaResultado.classList.remove('mostrar');
-        caixaResultado.style.display = 'none';
-        caixaPrincipal.style.display = 'block';
+        caixaResultado.classList.remove("mostrar");
+        caixaResultado.style.display = "none";
+        caixaPrincipal.style.display = "block";
         mostrarPergunta();
     });
-    
-    caixaResultado.innerHTML = ''; // Limpa conteúdo anterior
+
+    caixaResultado.innerHTML = "";
     caixaResultado.appendChild(textoResultado);
     caixaResultado.appendChild(botaoReiniciar);
 }
 
-// Inicializa a primeira pergunta
+// Inicia o quiz
 mostrarPergunta();
-
-
