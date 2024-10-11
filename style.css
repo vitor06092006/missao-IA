@@ -1,23 +1,13 @@
 /* Definição de variáveis CSS para as cores usadas no design */
 :root {
-    --cor-fundo: #6bd9f5;
-    /*cor do fundo*/
-    --cor-principal: #2ebbe6;
-    /*cores da caixa principal*/
-    --cor-secundaria: #000000;
-    /*cores da caixa secundaria*/
-    --cor-destaque: #96e4f1;
-    /*cor texto quest/Buttom*/
-    --cor-texto: #fafafa;
-    /*cor do texto pergunta*/
-    --cor-fadeButtom: #89deec;
-    /*cor fadebuttom*/
+    --cor-fundo: #6bd9f5; /* cor do fundo */
+    --cor-principal: #2ebbe6; /* cores da caixa principal */
+    --cor-secundaria: #000000; /* cores da caixa secundaria */
+    --cor-destaque: #96e4f1; /* cor texto quest/Buttom */
+    --cor-texto: #fafafa; /* cor do texto pergunta */
+    --cor-fadeButtom: #89deec; /* cor fadebuttom */
 }
 
-/* Configuração do estilo docorpo da págica */
-body { 
-    position: ;
-}
 /* Configuração do estilo do corpo da página */
 body {
     background-color: var(--cor-fundo);
@@ -30,6 +20,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* Estilo para imagens */
 img {
     max-width: 100%;
     height: auto;
@@ -72,8 +63,7 @@ button:hover {
 
 /* Estilo para a caixa de resultado */
 .caixa-resultado {
-    display: none;
-    /* Inicialmente oculta */
+    display: none; /* Inicialmente oculta */
     text-align: center;
     padding: 20px;
     background-color: var(--cor-secundaria);
@@ -84,6 +74,7 @@ button:hover {
 
 /* Classe para exibir a caixa de resultado */
 .caixa-resultado.mostrar {
+    display: block; /* Para garantir que a caixa apareça */
     opacity: 1;
 }
 
@@ -92,3 +83,4 @@ button:hover {
     font-size: 1.2rem;
     color: var(--cor-texto);
 }
+
